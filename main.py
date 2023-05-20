@@ -32,6 +32,7 @@ if __name__ == '__main__':
     vectorizer = TfidfVectorizer(stop_words='english')
 
     tfidf = vectorizer.fit_transform(data['text'])
+
     cos_sim = linear_kernel(tfidf, tfidf)
 
     # example input
@@ -40,6 +41,6 @@ if __name__ == '__main__':
     recommendations = get_article_recommendations(article_id, cos_sim, data)
 
     print(f"Recommendations for article {article_id}:")
-    
+
     for article in recommendations:
         print(f"Article ID: {article}")
