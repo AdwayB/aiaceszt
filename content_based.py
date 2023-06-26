@@ -28,7 +28,8 @@ if __name__ == '__main__':
     data['text'] = data['title'] + ' ' + data['text']
     data = data.drop_duplicates(subset='contentId', keep='first')
     data = data.dropna(subset=['text'])
-
+    '''pd.set_option('display.max_columns', None)
+    print(data.head())'''
     vectorizer = TfidfVectorizer(stop_words='english')
 
     tfidf = vectorizer.fit_transform(data['text'])
@@ -40,7 +41,7 @@ if __name__ == '__main__':
 
     recommendations = get_article_recommendations(article_id, cos_sim, data)
 
-    print(f"Recommendations for article {article_id}:")
+    print(f"Recommendations for article: {data[data['contentId'] == article_id]['title'].values[0]}:\n")
 
     for article in recommendations:
-        print(f"Article ID: {article}")
+        print("Article Recommendation: " + data[data['contentId'] == article]['title'].values[0])
