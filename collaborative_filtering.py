@@ -46,6 +46,8 @@ similarUsers = cosine_similarity(user_row, user_item_matrix).ravel()
 mostSimilar = np.argsort(similarUsers)[::-1]
 recommended_articles = [itemIndex[i] for i in mostSimilar if i not in uArticleindex][:5]
 
+print(f"User Profile: {user_id}")
+
 print("Recommended Articles:")
 for t in recommended_articles:
     z = dfShared[dfShared['contentId'] == t]
